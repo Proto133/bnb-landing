@@ -6,7 +6,7 @@ const autoplay: Ref = ref(true);
 </script>
 
 <template>
-    <q-card class="q-pa-md" dark>
+    <q-card class="q-pa-md"  flat dark>
         <q-carousel animated v-model="slide" infinite :autoplay="autoplay" transition-duration="30"
             transition-prev="fade" transition-next="fade" @mouseenter="autoplay = false" @mouseleave="autoplay = true">
             <q-carousel-slide :name="1" img-src="../assets/images/white_marble_bath_tile.png" />

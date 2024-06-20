@@ -20,11 +20,31 @@ const year = new Date().getFullYear();
      <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
       drawer content
     </q-drawer> -->
+    <!-- <q-header elevated> -->
+
+    <q-toolbar>
+
+      <q-img class="badge" src="./assets/images/Logo_v2-NOBG.png" />
+      <h3>
+
+        B & B Remodeling
+      </h3>
+
+      <q-space />
+
+      <q-tabs shrink stretch>
+        <q-route-tab to="#about" label="About" />
+        <q-route-tab to="#service" label="Service" />
+        <q-route-tab to="/page3" label="Contact" />
+      </q-tabs>
+    </q-toolbar>
+
+    <!-- </q-header> -->
 
     <q-page-container id="page">
 
       <Content class="split" />
-      <PastWork class="split work" />
+      <!-- <PastWork class="split work" /> -->
     </q-page-container>
 
     <q-footer elevated class="bg-grey-8 text-white">
@@ -46,6 +66,11 @@ const year = new Date().getFullYear();
   transition: filter 300ms;
 }
 
+.badge {
+  width: 7rem;
+  height: 7rem;
+}
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
@@ -61,7 +86,7 @@ const year = new Date().getFullYear();
 }
 
 .split {
-  flex: 1 0 45%;
+  flex: 1 0 100%;
   margin: 1rem;
 }
 
