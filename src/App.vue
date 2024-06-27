@@ -1,46 +1,61 @@
 <script setup lang="ts">
+import { watchEffect } from 'vue';
 import Content from './components/Content.vue'
-import PastWork from './components/PastWork.vue'
-import { ref } from 'vue';
-// const rightDrawerOpen = ref(false);
+import { useQuasar } from 'quasar';
+
+const emailAddress: string = "mailto:info@maxeffort.dev?subject=Remodeling Inquiry" + "_" + Date.now().toString();
 const year = new Date().getFullYear();
+const $q = useQuasar();
 
-// const toggleRightDrawer = () => {
-//   rightDrawerOpen.value = !rightDrawerOpen.value;
-// }
+let justification: string = "justify-between"
 
+$q.screen.setSizes({ sm: 300, md: 500, lg: 1000, xl: 2000 })
+watchEffect(() => {
+  justification = $q.screen.lt.md ? "justify-center" : "justify-between";
+  console.log(justification)
+})
 
 </script>
 
 <template id="app">
   <q-layout view="hHh lpR fFf">
-    <!-- <q-button :onclick="toggleRightDrawer">
-      Drawer
-    </q-button> 
-     <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
-      drawer content
-    </q-drawer> -->
-    <!-- <q-header elevated> -->
 
-    <q-toolbar>
+    <q-header>
+      <q-toolbar v-if="$q.screen.lt.sm == false" class="justify-center">
+        <q-img class="badge" src="./assets/images/Logo_v2-NOBG.png" />
 
-      <q-img class="badge" src="./assets/images/Logo_v2-NOBG.png" />
-      <h3>
+      </q-toolbar>
+      <q-toolbar class="fit row wrap" :class=justification>
+        <q-tabs class="wrap" stretch>
+          <q-route-tab to="#about" label="About" />
+          <q-route-tab to="#service" label="Service" />
+          <q-route-tab to="/page3" label="Contact" />
+        </q-tabs>
+        <!-- <q-space v-if="$q.screen.lt.md" /> -->
+        <q-toolbar v-if="$q.screen.gt.sm" inset class="justify-end">
 
-        B & B Remodeling
-      </h3>
+          <q-tabs stretch>
+            <q-route-tab flat color=" secondary" :href=emailAddress target="_blank" icon="mail">
+              Email
+            </q-route-tab>
+            <q-route-tab flat color="secondary" href="tel:18478757196" icon="phone" target="_blank">Call</q-route-tab>
+          </q-tabs>
+        </q-toolbar>
+      </q-toolbar>
+      <q-toolbar v-if="$q.screen.lt.md" class="justify-center">
 
-      <q-space />
+        <q-tabs stretch>
+          <q-route-tab flat color=" secondary" :href=emailAddress target="_blank" icon="mail">
+            Email
+          </q-route-tab>
+          <q-route-tab flat color="secondary" href="tel:18478757196" icon="phone" target="_blank">Call</q-route-tab>
+        </q-tabs>
+      </q-toolbar>
 
-      <q-tabs shrink stretch>
-        <q-route-tab to="#about" label="About" />
-        <q-route-tab to="#service" label="Service" />
-        <q-route-tab to="/page3" label="Contact" />
-      </q-tabs>
-    </q-toolbar>
 
-    <!-- </q-header> -->
 
+    </q-header>
+    <q-space />
     <q-page-container id="page">
 
       <Content class="split" />
@@ -66,9 +81,13 @@ const year = new Date().getFullYear();
   transition: filter 300ms;
 }
 
+.logo-div {
+
+  justify-content: center;
+}
+
 .badge {
-  width: 7rem;
-  height: 7rem;
+  flex: 0 1 33%;
 }
 
 .logo:hover {
@@ -82,15 +101,10 @@ const year = new Date().getFullYear();
 #page {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .split {
   flex: 1 0 100%;
-  margin: 1rem;
-}
-
-.work {
-  min-width: 400px;
 }
 </style>
