@@ -20,41 +20,44 @@ watchEffect(() => {
 <template id="app">
   <q-layout view="hHh lpR fFf">
 
-    <q-header>
-      <q-toolbar v-if="$q.screen.lt.sm == false" class="justify-center">
-        <q-img class="badge" src="./assets/images/Logo_v2-NOBG.png" />
 
-      </q-toolbar>
-      <q-toolbar class="fit row wrap" :class=justification>
-        <q-tabs class="wrap" stretch>
-          <q-route-tab to="#about" label="About" />
-          <q-route-tab to="#service" label="Service" />
-          <q-route-tab to="/page3" label="Contact" />
-        </q-tabs>
-        <!-- <q-space v-if="$q.screen.lt.md" /> -->
-        <q-toolbar v-if="$q.screen.gt.sm" inset class="justify-end">
+    <section class="header flex justify-between">
+      <!-- <q-toolbar v-if="$q.screen.lt.sm == false" class="justify-center"> -->
 
-          <q-tabs stretch>
-            <q-route-tab flat color=" secondary" :href=emailAddress target="_blank" icon="mail">
-              Email
-            </q-route-tab>
-            <q-route-tab flat color="secondary" href="tel:18478757196" icon="phone" target="_blank">Call</q-route-tab>
-          </q-tabs>
-        </q-toolbar>
-      </q-toolbar>
-      <q-toolbar v-if="$q.screen.lt.md" class="justify-center">
+      <!-- </q-toolbar> -->
 
-        <q-tabs stretch>
-          <q-route-tab flat color=" secondary" :href=emailAddress target="_blank" icon="mail">
-            Email
-          </q-route-tab>
-          <q-route-tab flat color="secondary" href="tel:18478757196" icon="phone" target="_blank">Call</q-route-tab>
-        </q-tabs>
-      </q-toolbar>
+      <!-- <q-toolbar class="fit row wrap" :class=justification> -->
+      <q-tabs stretch>
+        <q-route-tab href="#about" label="About" />
+        <q-route-tab href="#service" label="Service" />
+        <q-route-tab href="#contact" label="Contact" />
+      </q-tabs>
+      <!-- <q-space v-if="$q.screen.lt.md" /> -->
+      <!-- <q-toolbar v-if="$q.screen.gt.sm" inset class="justify-end"> -->
+
+      <q-img class="badge" src="./assets/images/Logo_v2-NOBG.png" />
+
+      <q-tabs stretch>
+        <q-route-tab flat color=" secondary" :href=emailAddress target="_blank" icon="mail">
+          Email
+        </q-route-tab>
+        <q-route-tab flat color="secondary" href="tel:18478757196" icon="phone" target="_blank">Call</q-route-tab>
+      </q-tabs>
+      <!-- </q-toolbar> -->
+      <!-- </q-toolbar> -->
+      <!-- <q-toolbar v-if="$q.screen.lt.md" class="justify-center"> -->
+
+      <!-- <q-tabs stretch>
+        <q-route-tab flat color=" secondary" :href=emailAddress target="_blank" icon="mail">
+          Email
+        </q-route-tab>
+        <q-route-tab flat color="secondary" href="tel:18478757196" icon="phone" target="_blank">Call</q-route-tab>
+      </q-tabs> -->
+      <!-- </q-toolbar> -->
 
 
+    </section>
 
-    </q-header>
     <q-space />
     <q-page-container id="page">
 
@@ -87,6 +90,7 @@ watchEffect(() => {
 }
 
 .badge {
+  /* order: -1; */
   flex: 0 1 33%;
 }
 
@@ -101,10 +105,24 @@ watchEffect(() => {
 #page {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .split {
   flex: 1 0 100%;
+}
+
+@media screen and (max-width: 721px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .badge {
+    order: -1;
+    flex: 0 1 35%;
+  }
+
 }
 </style>
